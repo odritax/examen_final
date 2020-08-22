@@ -1,15 +1,19 @@
 <template>
   <div>
     <Navbar/>
-    <br><br><br><br>
+    <div class="row">
+      <!-- <div class="col m4"></div>
+      <div class="col m4"></div> -->
+      <div class="input-field col m3 offset-m9">
+        <i class="material-icons prefix">search</i>
+        <input id="icon_prefix" v-model="buscador" type="text" class="validate">
+        <label for="icon_prefix">buscar por nombre</label>
+     </div>
+    </div>
+    <br>
       <div class="row">
         <div class="col m4"></div>
-        <div class="col m4"> <router-link :to="{path:'/juego'}" class="btn">Jugar</router-link></div><br>
-        <div class="input-field col m3">
-          <i class="material-icons prefix">search</i>
-          <input id="icon_prefix" v-model="buscador" type="text" class="validate">
-          <label for="icon_prefix">buscador</label>
-        </div>
+        <div class="col m4"> <router-link :to="{path:'/juego'}" class="btn waves-light btn-large">Jugar</router-link></div><br>
       </div>
     <table class="centered">
       <thead>
@@ -24,7 +28,7 @@
         <tr v-for="puntaje in Buscador" :key="puntaje.id">
         <td>{{puntaje.fecha}}</td>
         <td>{{puntaje.usuario.nombre}}</td>
-        <td>{{puntaje.puntaje}}</td>
+        <td>{{puntaje.puntaje}}/3</td>
         <td>{{puntaje.porcentaje}}</td>
         <!-- <td v-if="user.id==cita.paciente.id"><button  v-on:click="eliminar(cita.id)" class="btn">Cancelar</button></td>
         <td v-else>Ninguna</td> -->
@@ -60,14 +64,6 @@ export default {
     return {
      puntajes: db.collection("puntajes").orderBy('porcentaje','asc')
       }
-  },
-  methods: {
-     eliminar(id){
-      const pregunta=confirm(`Desea cancelar su cita?`)
-      if(pregunta==true){
-        db.collection("citas").doc(id).delete();
-      }
-    }
   },
 }
 </script>

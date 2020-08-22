@@ -107,7 +107,7 @@ export default {
       }
       let porcentaje=""
       if(contador==0){
-        porcentaje="0"
+        porcentaje="0%"
       }else if(contador==1){
         porcentaje="33.3%"
       }else if(contador==2){
@@ -125,9 +125,7 @@ export default {
        }
     })
     this.$router.push('/');
-     console.log(contador)
-      
-      
+    console.log(contador) 
     }
   },
   firestore(){
