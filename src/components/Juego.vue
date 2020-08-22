@@ -6,7 +6,7 @@
      <div class="col m4"></div>
      <div class="col m4" id="preguntas">
       <form @submit.prevent="Jugar">
-        <ul v-for="pregunta in azar.slice(0,3)" :key="pregunta.id">
+        <ul v-for="pregunta in desordenadas.slice(0,3)" :key="pregunta.id">
           <li>{{pregunta.pregunta}}
           <p>
             <label>
@@ -37,15 +37,27 @@
           </p>
           </li>
         </ul><br>     
-        <button type="submit" class="btn">Jugar</button>
+        <button type="submit" class="btn">Responder</button>
       </form>
      </div>
    </div>
+   <!-- Modalcito-->
+  <div class="modal">
+    <div class="modal-content">
+      <br><br><br>
+      <h4>{{mensaje}}</h4>
+    </div>
+    <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-light btn">Cerrar</a>
+    </div>
+  </div>
   </div>
 </template>
 <script>
 import { db } from '@/firebase';
 import Navbar from '@/components/Nav.vue'
+import M from 'materialize-css'
+import 'materialize-css/dist/js/materialize.min'
 const getDate = () => {
   const trailing = (d) => ('0' + d).slice(-2);
   const now = new Date();
@@ -57,13 +69,19 @@ export default {
   data(){
     return{
       preguntas:[],
-      azar:[]
+      azar:[],
+      mensaje:""
     }
   },
   computed:{
     user(){
       return this.$store.state.user
     },
+     desordenadas() {
+      let preguntas = [...this.preguntas]
+      preguntas.sort(() => 0.5 - Math.random());
+      return preguntas;
+    }
   },
   components:{
     Navbar
@@ -71,6 +89,7 @@ export default {
   mounted(){
     this.azar = this.preguntas.sort(() => 0.5 - Math.random());
     console.log(this.azar);
+    M.AutoInit();
   },
   methods:{
       Jugar(){
@@ -108,11 +127,15 @@ export default {
       let porcentaje=""
       if(contador==0){
         porcentaje="0%"
+        this.mensaje="Ninguna de tus respuestas fué correcta"
       }else if(contador==1){
         porcentaje="33.3%"
+        this.mensaje="Puntaje: 1/3 "
       }else if(contador==2){
         porcentaje="66.6%"
+        this.mensaje="Puntaje: 2/3 "
       }else if(contador==3){
+        this.mensaje="Puntaje: 3/3 "
         porcentaje="100%"
       }
       db.collection("puntajes").add({
@@ -124,7 +147,10 @@ export default {
          nombre:this.$store.state.user.name
        }
     })
-    this.$router.push('/');
+    const modal = document.querySelector('.modal')
+    var instance = M.Modal.getInstance(modal);
+    instance.open();
+    // this.$router.push('/');
     console.log(contador) 
     }
   },
@@ -138,6 +164,5 @@ export default {
 <style>
 #preguntas{
   text-align: left;
-
 }
 </style>

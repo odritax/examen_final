@@ -4,43 +4,37 @@
    <h4>Agregar una Pregunta</h4><br><br>
    <form  @submit.prevent="Registrar" action="">
   <div class="row">
-    <div class="col m4"></div>  
-    <div class="input-field col m4">
+    <div class="input-field col m4 offset-m4">
       <textarea  required v-model="pregunta" class="materialize-textarea" data-length="120"></textarea>
       <label for="textarea2">Pregunta</label>
     </div>
     </div>
     <div class="row">
-      <div class="col m4"></div>  
-      <div class="input-field col m4">
+      <div class="input-field col m4 offset-m4">
         <input type="text" class="validate" v-model="respuesta_correcta" required>
         <label class="active">Respuesta correcta</label>
       </div>
     </div>
     <div class="row">
-    <div class="col m4"></div>  
-      <div class="input-field col m4">
+      <div class="input-field col m4 offset-m4">
         <input type="text" class="validate" v-model="respuesta_incorrecta1" required>
         <label class="active">Respuesta incorrecta 1</label>
       </div>
     </div>
     <div class="row">
-    <div class="col m4"></div>  
-      <div class="input-field col m4">
+      <div class="input-field col m4 offset-m4">
         <input type="text" class="validate" v-model="respuesta_incorrecta2" required>
         <label class="active" >Respuesta incorrecta 2</label>
       </div>
     </div>
        <div class="row">
-    <div class="col m4"></div>  
-      <div class="input-field col m4">
+      <div class="input-field col m4 offset-m4">
         <input type="text" class="validate" v-model="respuesta_incorrecta3" required>
         <label class="active" >Respuesta incorrecta 3</label>
       </div>
     </div>
     <div class="row">
-      <div class="col m4"></div>  
-      <div class="input-field col m4">
+      <div class="input-field col m4 offset-m4">
       <button type="submit" class="btn">Agregar</button>
       <!-- <button class="btn">Cancelar</button> -->
       </div>

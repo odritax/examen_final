@@ -2,8 +2,6 @@
   <div>
     <Navbar/>
     <div class="row">
-      <!-- <div class="col m4"></div>
-      <div class="col m4"></div> -->
       <div class="input-field col m3 offset-m9">
         <i class="material-icons prefix">search</i>
         <input id="icon_prefix" v-model="buscador" type="text" class="validate">
@@ -12,8 +10,7 @@
     </div>
     <br>
       <div class="row">
-        <div class="col m4"></div>
-        <div class="col m4"> <router-link :to="{path:'/juego'}" class="btn waves-light btn-large">Jugar</router-link></div><br>
+        <div class="col m4 offset-m4"> <router-link :to="{path:'/juego'}" class="btn waves-light btn-large">Jugar</router-link></div><br>
       </div>
     <table class="centered">
       <thead>
