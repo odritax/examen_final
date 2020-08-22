@@ -15,18 +15,18 @@
     <table class="centered">
       <thead>
         <tr>
-          <th>Fecha</th>
           <th>Nombre</th>
           <th>Puntaje</th>
           <th>Porcentaje</th>
+          <th>Fecha</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="puntaje in Buscador" :key="puntaje.id">
-        <td>{{puntaje.fecha}}</td>
         <td>{{puntaje.usuario.nombre}}</td>
         <td>{{puntaje.puntaje}}/3</td>
         <td>{{puntaje.porcentaje}}</td>
+        <td>{{puntaje.fecha}}</td>
         <!-- <td v-if="user.id==cita.paciente.id"><button  v-on:click="eliminar(cita.id)" class="btn">Cancelar</button></td>
         <td v-else>Ninguna</td> -->
       </tr>

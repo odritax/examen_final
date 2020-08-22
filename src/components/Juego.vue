@@ -10,7 +10,7 @@
           <li>{{pregunta.pregunta}}
           <p>
             <label>
-              <input type="radio" class="with-gap" :value="pregunta.respuestas[0].valor" :name="pregunta.id"/>
+              <input type="radio" class="with-gap" :value="pregunta.respuestas[0].valor" :name="pregunta.id" required/>
               <span>{{pregunta.respuestas[0].texto}}</span>
             </label>
           </p>
@@ -44,11 +44,9 @@
    <!-- Modalcito-->
   <div class="modal">
     <div class="modal-content">
-      <br><br><br>
+      <br>
       <h4>{{mensaje}}</h4>
-    </div>
-    <div class="modal-footer">
-    <a href="#!" class="modal-close waves-effect waves-light btn">Cerrar</a>
+      <p>Gracias por jugar...espera un momento y serás redirigido al HOME</p>
     </div>
   </div>
   </div>
@@ -58,6 +56,7 @@ import { db } from '@/firebase';
 import Navbar from '@/components/Nav.vue'
 import M from 'materialize-css'
 import 'materialize-css/dist/js/materialize.min'
+import router from "@/router"; 
 const getDate = () => {
   const trailing = (d) => ('0' + d).slice(-2);
   const now = new Date();
@@ -69,7 +68,6 @@ export default {
   data(){
     return{
       preguntas:[],
-      azar:[],
       mensaje:""
     }
   },
@@ -87,13 +85,17 @@ export default {
     Navbar
   },
   mounted(){
-    this.azar = this.preguntas.sort(() => 0.5 - Math.random());
-    console.log(this.azar);
     M.AutoInit();
   },
   methods:{
       Jugar(){
         let contador=0
+
+        // for(let i=0; i<document.getElementsByClassName("with-gap").length;i++)
+        // {
+        //  document.getElementsByClassName("with-gap")[i]
+        //  console.log( document.getElementsByClassName("with-gap")[i]);
+        // }
     //Pregunta 1
       if(document.getElementsByClassName("with-gap")[0].checked&&document.getElementsByClassName("with-gap")[0].value=="true"){
         contador=contador+1
@@ -150,8 +152,10 @@ export default {
     const modal = document.querySelector('.modal')
     var instance = M.Modal.getInstance(modal);
     instance.open();
-    // this.$router.push('/');
-    console.log(contador) 
+    setTimeout(function(){ 
+      router.push('/') 
+      // this.$router.push('/');//no servia se tuvo que importar router
+    }, 3000);
     }
   },
   firestore(){

@@ -46,6 +46,7 @@
 import Navbar from '@/components/Nav.vue'
 import { db } from '@/firebase';
 import M from 'materialize-css'
+import router from "@/router"; 
 
 export default {
   name:"Preguntas",
@@ -98,7 +99,11 @@ export default {
       pregunta:this.pregunta,
       respuestas:respuestas
     })
-    this.$router.push('/');
+    // this.$router.push('/');
+    .then(function(){
+      router.push('/') 
+      M.toast({html: 'Tu respuesta fué agregada de manera exitosa <3'})
+    })
  }
 },
 }
