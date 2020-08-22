@@ -1,10 +1,9 @@
 <template>
   <div>
    <Navbar/>
-   <h3>Preguntas</h3>
+   <h3>Preguntas</h3> 
    <div class="row">
-     <div class="col m4"></div>
-     <div class="col m4" id="preguntas">
+     <div class="col m4 offset-m4" id="preguntas">
       <form @submit.prevent="Jugar">
         <ul v-for="pregunta in desordenadas.slice(0,3)" :key="pregunta.id">
           <li>{{pregunta.pregunta}}
@@ -168,5 +167,8 @@ export default {
 <style>
 #preguntas{
   text-align: left;
+}
+html{
+   overflow-y:scroll;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="home">
     <Navbar/>
     <div class="row">
       <div class="input-field col m3 offset-m9">
@@ -64,3 +64,8 @@ export default {
   },
 }
 </script>
+<style>
+/* html #home{
+   overflow-y:hidden;
+} */
+</style>
